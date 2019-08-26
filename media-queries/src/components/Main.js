@@ -1,17 +1,27 @@
 import React, {Component} from 'react';
+import '../App.css'
 
 export default class Main extends Component {
     constructor(props){
         super(props)
         this.state = {
-            toggleSideBar: false
+            toggleTopBar: false
         }
+        this.toggleTopBarFunc = this.toggleTopBarFunc.bind(this)
     }
 
-
-
+  
+    toggleTopBarFunc() {
+        this.setState(prevState => {
+            console.log("clicked")
+          return {
+            toggleTopBar: !prevState.toggleTopBar
+          };
+        });
+      }
 
     render(){
+        console.log(this.state)
         return (
             <body>
     <header>
@@ -19,14 +29,14 @@ export default class Main extends Component {
             <div>
                 <a class="Bootstrap" href='#/services'>Start Bootstrap</a>
             </div>
-            <nav>
+            <button onClick={this.toggleTopBarFunc} class='navbar-menu'>Menu</button>
+            <nav className={this.state.toggleTopBar ? "show" : ""}>
                 <ul>
                     <li><a href='#/services'>Services</a></li>
                     <li><a href='#/portfolio'>Portfolio</a></li>
                     <li><a href='#/About'>About</a></li>
                     <li><a href='#/team'>Team</a></li>
                     <li><a href='#/contact'>Contact</a></li>
-                    <li><button class='navbar-menu'>Menu</button></li>
                 </ul>
             </nav>
         </div>
